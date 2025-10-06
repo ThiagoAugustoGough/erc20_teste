@@ -34,7 +34,7 @@ contract erc20 {
         uint256 _value
     ) public returns (bool success) {
         // require(saldosPorEndereco[msg.sender] >= _value, "Saldo insuficiente");
-        if (saldosPorEndereco[msg.sender] <= _value) return false;
+        if (saldosPorEndereco[msg.sender] < _value) return false;
         else {
             saldosPorEndereco[msg.sender] -= _value;
             saldosPorEndereco[_to] += _value;
@@ -49,7 +49,7 @@ contract erc20 {
         uint256 _value
     ) public returns (bool success) {
         if (saldosPorEndereco[_from] <= _value) return false;
-        if (aprovadoPorEndereco[_from][msg.sender] > _value) return false;
+        if (aprovadoPorEndereco[_from][msg.sender] < _value) return false;
         else {
             saldosPorEndereco[_from] -= _value;
             saldosPorEndereco[_to] += _value;
