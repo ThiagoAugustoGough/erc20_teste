@@ -15,6 +15,7 @@ contract erc20 {
 
     constructor(uint256 valorInicial) {
         saldosPorEndereco[msg.sender] = valorInicial;
+        emit Transfer(address(0), msg.sender, valorInicial);
     }
 
     function name() public pure returns (string memory) {
@@ -51,8 +52,8 @@ contract erc20 {
         uint256 _value
     ) public returns (bool success) {
         require(aprovadoPorEndereco[_from][msg.sender] >= _value);
-        transferHelper(_to, _from, _value);
         aprovadoPorEndereco[_from][msg.sender] -= _value;
+        transferHelper(_to, _from, _value);
         return true;
     }
 
