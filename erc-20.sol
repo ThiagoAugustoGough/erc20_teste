@@ -13,6 +13,8 @@ contract erc20 {
         uint256 _value
     );
 
+    //teste
+
     constructor(uint256 valorInicial) {
         saldosPorEndereco[msg.sender] = valorInicial;
     }
